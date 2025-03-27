@@ -11,7 +11,7 @@ namespace emprestimos_livros.Models
         public int Id { get; set; }
         public string Fornecedor { get; set; }
         public string LivroEmprestado { get; set; }
-        public DateTime DataEmprestimo { get; set; } = DateTime.Now;
+        public DateTime dataUltimaAtualizacao { get; set; } = DateTime.Now;
 
 
 
