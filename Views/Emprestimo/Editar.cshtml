@@ -1,6 +1,6 @@
 @model EmprestimosModel
 @{
-    ViewData["Title"] = "Editar";
+    ViewData["Title"] = "Editar Emprestimo";
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -12,8 +12,8 @@
     </div>
 
 <form method="post" asp-controller="Emprestimo" asp-action="Editar">
+  <input type="hidden" asp-for="Id" />
 
-  <input type="hidden" asp-action="Id" />
   <div class="mb-3">
     <label for="Recebedor" class="form-label text-light">Recebedor:</label>
     <input type="text" class="form-control" asp-for="Recebedor" id="Recebedor" placeholder="Quem esta recebendo o livro">
@@ -34,7 +34,7 @@
 
 
 <div class="d-flex gap-5 mt-5">
-  <button type="submit" class="btn btn-success w-50 ">Adicionar</button>
+  <button type="submit" class="btn btn-success w-50 ">Editar</button>
   <a class="btn btn-primary w-50" asp-controller="Emprestimo" asp-action="Index">Voltar</a>
 </div>
 
