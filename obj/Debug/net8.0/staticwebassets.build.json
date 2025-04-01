@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "WNeLJADooQGxbrFxUR/XLba4ytze8AcMGsFnkvMhiho=",
+  "Hash": "MaMVkfIz0p/1jKgRD0FEq2i22etlFTAT/MXFJl4wfTs=",
   "Source": "emprestimos-livros",
   "BasePath": "_content/emprestimos-livros",
   "Mode": "Default",
@@ -55,6 +55,25 @@
       "OriginalItemSpec": "C:\\ProjetosPessoais\\emprestimos-livros\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\emprestimos-livros.bundle.scp.css"
     },
     {
+      "Identity": "C:\\ProjetosPessoais\\emprestimos-livros\\wwwroot\\css\\Materia.css",
+      "SourceId": "emprestimos-livros",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\ProjetosPessoais\\emprestimos-livros\\wwwroot\\",
+      "BasePath": "_content/emprestimos-livros",
+      "RelativePath": "css/Materia.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Materia.css"
+    },
+    {
       "Identity": "C:\\ProjetosPessoais\\emprestimos-livros\\wwwroot\\css\\site.css",
       "SourceId": "emprestimos-livros",
       "SourceType": "Discovered",
@@ -91,6 +110,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\ProjetosPessoais\\emprestimos-livros\\wwwroot\\img\\book.png",
+      "SourceId": "emprestimos-livros",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\ProjetosPessoais\\emprestimos-livros\\wwwroot\\",
+      "BasePath": "_content/emprestimos-livros",
+      "RelativePath": "img/book.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\book.png"
     },
     {
       "Identity": "C:\\ProjetosPessoais\\emprestimos-livros\\wwwroot\\js\\site.js",
