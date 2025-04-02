@@ -2358,12 +2358,12 @@ progress {
 }
 
 .form-control::-moz-placeholder {
-  color: rgba(0, 0, 0, 0.4);
+  color: #ccc;
   opacity: 1;
 }
 
 .form-control::placeholder {
-  color: rgba(0, 0, 0, 0.4);
+  color: #ccc;
   opacity: 1;
 }
 
