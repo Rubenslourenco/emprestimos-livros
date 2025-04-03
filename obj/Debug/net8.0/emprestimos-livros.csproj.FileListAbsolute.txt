@@ -167,3 +167,11 @@ C:\ProjetosPessoais\emprestimos-livros\obj\Debug\net8.0\refint\emprestimos-livro
 C:\ProjetosPessoais\emprestimos-livros\obj\Debug\net8.0\emprestimos-livros.pdb
 C:\ProjetosPessoais\emprestimos-livros\obj\Debug\net8.0\emprestimos-livros.genruntimeconfig.cache
 C:\ProjetosPessoais\emprestimos-livros\obj\Debug\net8.0\ref\emprestimos-livros.dll
+C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\ClosedXML.dll
+C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\ClosedXML.Parser.dll
+C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\DocumentFormat.OpenXml.dll
+C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\DocumentFormat.OpenXml.Framework.dll
+C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\ExcelNumberFormat.dll
+C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\RBush.dll
+C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\SixLabors.Fonts.dll
+C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\System.IO.Packaging.dll

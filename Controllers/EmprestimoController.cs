@@ -1,7 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
+using ClosedXML.Excel;
 using emprestimos_livros.data;
 using emprestimos_livros.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -67,6 +71,50 @@ namespace emprestimos_livros.Controllers
 
             return View(emprestimo);
 
+        }
+
+        public IActionResult Exportar()
+        {
+            var dados = GetDados();
+
+            using (XLWorkbook workBook = new XLWorkbook())
+            {
+
+                workBook.AddWorksheet(dados, "Dados Emprestimos");
+
+                using (MemoryStream ms = new MemoryStream())
+                {
+
+                    workBook.SaveAs(ms);
+                    return File(ms.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Emprestimos.xlsx");
+                }
+
+            }
+
+        }
+
+        private DataTable GetDados()
+        {
+            DataTable dataTable = new DataTable();
+
+            dataTable.TableName = "Dados do emprestimos";
+
+            dataTable.Columns.Add("Recebedor", typeof(string));
+            dataTable.Columns.Add("Fornecedor", typeof(string));
+            dataTable.Columns.Add("Livro", typeof(string));
+            dataTable.Columns.Add("Data Emprestimos", typeof(DateTime));
+
+            var dados = _db.Emprestimos.ToList();
+
+            if (dados.Count > 0)
+            {
+                dados.ForEach(emprestimo =>
+                {
+                    dataTable.Rows.Add(emprestimo.Recebedor, emprestimo.Fornecedor, emprestimo.LivroEmprestado, emprestimo.dataUltimaAtualizacao);
+                });
+            }
+
+            return dataTable;
         }
 
         [HttpPost]
