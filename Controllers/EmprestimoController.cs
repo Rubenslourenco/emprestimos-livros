@@ -131,7 +131,7 @@ namespace emprestimos_livros.Controllers
 
                 return RedirectToAction("Index");
             }
-            TempData["MensagemErro"] = "Algum erro ocorreu al realizar o cadastro!";
+            TempData["MensagemErro"] = "Algum erro ocorreu ao realizar o cadastro!";
 
             return View();
         }
