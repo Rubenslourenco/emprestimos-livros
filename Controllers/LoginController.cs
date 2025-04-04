@@ -13,7 +13,7 @@ public class LoginController : Controller
         return View();
     }
 
-    public IActionResult Index()
+    public IActionResult Registrar()
     {
         return View();
     }

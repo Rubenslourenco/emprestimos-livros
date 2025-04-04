@@ -8,6 +8,11 @@ C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\emprestimos-livros.dll
 C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\emprestimos-livros.pdb
 C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\Azure.Core.dll
 C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\Azure.Identity.dll
+C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\ClosedXML.dll
+C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\ClosedXML.Parser.dll
+C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\DocumentFormat.OpenXml.dll
+C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\DocumentFormat.OpenXml.Framework.dll
+C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\ExcelNumberFormat.dll
 C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\Humanizer.dll
 C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\Microsoft.Build.Locator.dll
@@ -44,6 +49,8 @@ C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\Microsoft.IdentityModel.
 C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\Microsoft.SqlServer.Server.dll
 C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
 C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\Mono.TextTemplating.dll
+C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\RBush.dll
+C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\SixLabors.Fonts.dll
 C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\System.ClientModel.dll
 C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\System.CodeDom.dll
 C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\System.Composition.AttributedModel.dll
@@ -56,6 +63,7 @@ C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\System.Diagnostics.Diagn
 C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\System.Drawing.Common.dll
 C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\System.Formats.Asn1.dll
 C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\System.IO.Packaging.dll
 C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\System.IO.Pipelines.dll
 C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\System.Memory.Data.dll
 C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\System.Runtime.Caching.dll
@@ -167,11 +175,3 @@ C:\ProjetosPessoais\emprestimos-livros\obj\Debug\net8.0\refint\emprestimos-livro
 C:\ProjetosPessoais\emprestimos-livros\obj\Debug\net8.0\emprestimos-livros.pdb
 C:\ProjetosPessoais\emprestimos-livros\obj\Debug\net8.0\emprestimos-livros.genruntimeconfig.cache
 C:\ProjetosPessoais\emprestimos-livros\obj\Debug\net8.0\ref\emprestimos-livros.dll
-C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\ClosedXML.dll
-C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\ClosedXML.Parser.dll
-C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\DocumentFormat.OpenXml.dll
-C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\DocumentFormat.OpenXml.Framework.dll
-C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\ExcelNumberFormat.dll
-C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\RBush.dll
-C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\SixLabors.Fonts.dll
-C:\ProjetosPessoais\emprestimos-livros\bin\Debug\net8.0\System.IO.Packaging.dll
