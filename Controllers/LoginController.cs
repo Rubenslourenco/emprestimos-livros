@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using emprestimos_livros.Models;
+using emprestimos_livros.Dto;
 
 namespace emprestimos_livros.Controllers;
 
@@ -18,4 +19,9 @@ public class LoginController : Controller
         return View();
     }
 
+    [HttpPost]
+    public IActionResult Registrar(UsuarioRegisterDto usuarioRegisterDto)
+    {
+        return View(usuarioRegisterDto);
+    }
 }
