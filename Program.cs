@@ -1,5 +1,6 @@
 using emprestimos_livros.data;
 using emprestimos_livros.Services.LoginService;
+using emprestimos_livros.Services.SenhaService;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     });
 
 builder.Services.AddScoped<ILoginInterface, LoginService>();
+builder.Services.AddScoped<ISenhaInterface, SenhaService>();
 
 var app = builder.Build();
 

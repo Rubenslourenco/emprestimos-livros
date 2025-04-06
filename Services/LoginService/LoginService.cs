@@ -33,32 +33,12 @@ namespace emprestimos_livros.Services.LoginService
                     response.Status = "false";
                     return response;
                 }
-                else
-                {
-                    UsuarioModel usuario = new UsuarioModel()
-                    {
-                        Nome = usuarioRegisterDto.Nome,
-                        Sobrenome = usuarioRegisterDto.Sobrenome,
-                        Email = usuarioRegisterDto.Email,
-                        SenhaHash = usuarioRegisterDto.SenhaHash,
-                        SenhaSalt = usuarioRegisterDto.SenhaSalt
-                    };
-
-                    _context.Usuarios.Add(usuario);
-                    await _context.SaveChangesAsync();
-
-                    response.Dados = usuario;
-                    response.Mensagem = "Usuario registrado com sucesso";
-                    response.Status = "true";
-                    return response;
-                }
 
 
             }
             catch (Exception ex)
             {
                 response.Mensagem = ex.Message;
-                response.Status = "false";
                 return response;
 
             }
