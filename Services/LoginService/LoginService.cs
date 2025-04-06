@@ -20,18 +20,62 @@ namespace emprestimos_livros.Services.LoginService
 
         }
 
-        public Task<ResponseModel<UsuarioModel>> RegistrarUsuario(UsuarioRegisterDto usuarioRegisterDto)
+        public async Task<ResponseModel<UsuarioModel>> RegistrarUsuario(UsuarioRegisterDto usuarioRegisterDto)
+
         {
             ResponseModel<UsuarioModel> response = new ResponseModel<UsuarioModel>();
 
             try
             {
+                if (VerificacarSeEmailExiste(usarioRegisterDto))
+                {
+                    response.Mensagem = "Email já cadastro";
+                    response.Status = "false";
+                    return response;
+                }
+                else
+                {
+                    UsuarioModel usuario = new UsuarioModel()
+                    {
+                        Nome = usuarioRegisterDto.Nome,
+                        Sobrenome = usuarioRegisterDto.Sobrenome,
+                        Email = usuarioRegisterDto.Email,
+                        SenhaHash = usuarioRegisterDto.SenhaHash,
+                        SenhaSalt = usuarioRegisterDto.SenhaSalt
+                    };
+
+                    _context.Usuarios.Add(usuario);
+                    await _context.SaveChangesAsync();
+
+                    response.Dados = usuario;
+                    response.Mensagem = "Usuario registrado com sucesso";
+                    response.Status = "true";
+                    return response;
+                }
+
 
             }
             catch (Exception ex)
             {
-
+                response.Mensagem = ex.Message;
+                response.Status = "false";
+                return response;
 
             }
         }
+
+        private bool VerificacarSeEmailExiste(UsuarioRegisterDto usuarioRegisterDto)
+        {
+
+            var usuario = _context.Usuarios.FirstOrDefault(x => x.Email == usuarioRegisterDto.Email);
+            if (usuario != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
+}
