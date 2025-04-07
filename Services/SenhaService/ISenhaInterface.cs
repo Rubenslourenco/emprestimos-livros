@@ -7,6 +7,6 @@ namespace emprestimos_livros.Services.SenhaService
 {
     public interface ISenhaInterface
     {
-        void CriarSenha(string senha, out byte[] senhaHash, out byte[] senhaSalt);
+        void CriarSenhaHash(string senha, out byte[] senhaHash, out byte[] senhaSalt);
     }
 }

@@ -13,9 +13,11 @@
    </div>
   }
 
+<div asp-validation-summary="All" class="text-bg-danger"></div>
+
 <div class="container">
     <h1>Cadastro de Usuarios</h1>
-    <form asp-action="Registrar" asp-controller="Login" method="post"> 
+    <form method="post" asp-action="Registrar" asp-controller="Login" > 
 
     <div class="mb-3">
         <label for="email" class="form-label">Email: </label>

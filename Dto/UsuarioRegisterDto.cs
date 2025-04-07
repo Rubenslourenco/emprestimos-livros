@@ -16,7 +16,7 @@ namespace emprestimos_livros.Dto
         public string Email { get; set; }
         [Required(ErrorMessage = "Digite a Senha!!")]
         public string Senha { get; set; }
-        [Required(ErrorMessage = "Digite a Confirmação da Senha!!")]
+        [Required(ErrorMessage = "Digite a Confirmação da Senha!!"), Compare("Senha", ErrorMessage = "As senhas não conferem!!")]
         public string ConfirmarSenha { get; set; }
 
     }
