@@ -17,7 +17,7 @@ public class LoginController : Controller
     }
 
 
-    public IActionResult Index()
+    public IActionResult Login()
     {
         return View();
     }
@@ -55,9 +55,28 @@ public class LoginController : Controller
         }
 
     }
+    [HttpPost]
     public async Task<IActionResult> Login(UsuarioLoginDto usuarioLoginDto)
     {
-        return View();
+        if (ModelState.IsValid)
+        {
+            var usuario = await _loginInterface.Login(usuarioLoginDto);
+
+            if (usuario.Status)
+            {
+                TempData["MensagemSucesso"] = usuario.Mensagem;
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                TempData["MensagemErro"] = usuario.Mensagem;
+                return View("Index", usuarioLoginDto);
+            }
+        }
+        else
+        {
+            return Redirect("Index");
+        }
     }
 
 

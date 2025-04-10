@@ -6,6 +6,7 @@ using emprestimos_livros.data;
 using emprestimos_livros.Dto;
 using emprestimos_livros.Models;
 using emprestimos_livros.Services.SenhaService;
+using emprestimos_livros.Services.SessaoService;
 
 namespace emprestimos_livros.Services.LoginService
 {
@@ -15,12 +16,14 @@ namespace emprestimos_livros.Services.LoginService
 
         private readonly ApplicationDbContext _context;
         private readonly ISenhaInterface _senhaInterface;
+        private readonly ISessaoInterface _sessaoInterface;
 
 
-        public LoginService(ApplicationDbContext context, ISenhaInterface senhaInterface)
+        public LoginService(ApplicationDbContext context, ISenhaInterface senhaInterface, ISessaoInterface sessaoInterface)
         {
             _context = context;
             _senhaInterface = senhaInterface;
+            _sessaoInterface = sessaoInterface;
 
         }
 
@@ -44,11 +47,9 @@ namespace emprestimos_livros.Services.LoginService
                     response.Status = false;
                     return response;
                 }
-                {
-                    response.Mensagem = "Credenciais inválidas";
-                    response.Status = false;
-                    return response;
-                }
+
+                //Criar uma sessão
+                _sessaoInterface.CriarSessao(usuario);
 
                 response.Mensagem = "Login realizado com sucesso";
                 return response;

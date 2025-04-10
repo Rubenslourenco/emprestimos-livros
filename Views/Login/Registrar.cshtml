@@ -1,18 +1,19 @@
 @using emprestimos_livros.Dto
 @model UsuarioRegisterDto
-  
-  @if(TempData["MensagemSucesso"] != null) {
-   <div class="alert alert-success text-light" role="alert">
-    @TempData["MensagemSucesso"]
-   </div>
-  }
 
-   @if(TempData["MensagemError"] != null) {
-   <div class="alert alert-danger text-light" role="alert">
-    @TempData["MensagemSucesso"]
-   </div>
-  }
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success text-dark" role="alert">
+        @TempData["MensagemSucesso"]
+    </div>
+}
 
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger text-dark" role="alert">
+        @TempData["MensagemErro"]
+    </div>
+}
 <div asp-validation-summary="All" class="text-bg-danger"></div>
 
 <div class="container">
@@ -46,7 +47,7 @@
 
     <div class="d-flex justify-content-center">
     <button type="submit" class="btn btn-primary w-25 mx-2">Cadastrar</button>
-    <a asp-action="Index" asp-controller="Login" class="btn w-25">Voltar</a>
+    <a asp-action="Login" asp-controller="Login" class="btn w-25">Voltar</a>
     </div>
 
     </form>
