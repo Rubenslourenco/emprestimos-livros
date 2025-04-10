@@ -10,17 +10,19 @@
     </div>
   </div>
 
-  @if(TempData["MensagemSucesso"] != null) {
-   <div class="alert alert-success text-light" role="alert">
-    @TempData["MensagemSucesso"]
-   </div>
-  }
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success text-dark" role="alert">
+        @TempData["MensagemSucesso"]
+    </div>
+}
 
-   @if(TempData["MensagemError"] != null) {
-   <div class="alert alert-danger text-light" role="alert">
-    @TempData["MensagemSucesso"]
-   </div>
-  }
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger text-dark" role="alert">
+        @TempData["MensagemErro"]
+    </div>
+}
 
 
 <table id="Emprestimos" class="table table-light table-hover mx-5">
