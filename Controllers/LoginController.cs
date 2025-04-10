@@ -55,4 +55,10 @@ public class LoginController : Controller
         }
 
     }
+    public async Task<IActionResult> Login(UsuarioLoginDto usuarioLoginDto)
+    {
+        return View();
+    }
+
+
 }

@@ -24,6 +24,44 @@ namespace emprestimos_livros.Services.LoginService
 
         }
 
+        public async Task<ResponseModel<UsuarioModel>> Login(UsuarioLoginDto usuarioLoginDto)
+        {
+            ResponseModel<UsuarioModel> response = new ResponseModel<UsuarioModel>();
+            try
+            {
+                var usuario = _context.Usuarios.FirstOrDefault(x => x.Email == usuarioLoginDto.Email);
+
+                if (usuario == null)
+                {
+                    response.Mensagem = "Credenciais inválidas";
+                    response.Status = false;
+                    return response;
+                }
+
+                if (!_senhaInterface.VerificarSenha(usuarioLoginDto.Senha, usuario.SenhaHash, usuario.SenhaSalt))
+                {
+                    response.Mensagem = "Credenciais inválidas";
+                    response.Status = false;
+                    return response;
+                }
+                {
+                    response.Mensagem = "Credenciais inválidas";
+                    response.Status = false;
+                    return response;
+                }
+
+                response.Mensagem = "Login realizado com sucesso";
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Mensagem = ex.Message;
+                response.Status = false;
+                return response;
+            }
+
+        }
+
         public async Task<ResponseModel<UsuarioModel>> RegistrarUsuario(UsuarioRegisterDto usuarioRegisterDto)
 
         {

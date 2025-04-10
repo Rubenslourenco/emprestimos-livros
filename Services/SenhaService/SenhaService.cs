@@ -17,5 +17,14 @@ namespace emprestimos_livros.Services.SenhaService
                 senhaHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(senha));
             }
         }
+
+        public bool VerificarSenha(string senha, byte[] senhaHash, byte[] senhaSalt)
+        {
+            using (var hmac = new HMACSHA512(senhaSalt))
+            {
+                var computedHahs = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(senha));
+                return computedHahs.SequenceEqual(senhaHash);
+            }
+        }
     }
 }
