@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using emprestimos_livros.Models;
 using emprestimos_livros.Dto;
 using emprestimos_livros.Services.LoginService;
+using emprestimos_livros.Services.SessaoService;
 
 namespace emprestimos_livros.Controllers;
 
@@ -10,16 +11,23 @@ public class LoginController : Controller
 {
 
     private readonly ILoginInterface _loginInterface;
+    private readonly ISessaoInterface _sessaoInterface;
 
-    public LoginController(ILoginInterface loginInterface)
+    public LoginController(ILoginInterface loginInterface, ISessaoInterface sessaoInterface)
     {
         _loginInterface = loginInterface;
+        _sessaoInterface = sessaoInterface;
     }
 
 
     public IActionResult Login()
     {
         return View();
+    }
+    public IActionResult Logout()
+    {
+        _sessaoInterface.RemoveSessao();
+        return RedirectToAction("Login");
     }
 
     public IActionResult Registrar()
@@ -70,12 +78,12 @@ public class LoginController : Controller
             else
             {
                 TempData["MensagemErro"] = usuario.Mensagem;
-                return View("Index", usuarioLoginDto);
+                return View(usuarioLoginDto);
             }
         }
         else
         {
-            return Redirect("Index");
+            return View(usuarioLoginDto);
         }
     }
 
