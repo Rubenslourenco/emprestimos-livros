@@ -1,6 +1,10 @@
 @using emprestimos_livros.Dto
   @model UsuarioLoginDto
 
+@{
+    Layout = "_LayoutDeslogado";  
+}
+
 @if (TempData["MensagemSucesso"] != null)
 {
     <div class="alert alert-success text-dark" role="alert">
