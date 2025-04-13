@@ -1,3 +1,4 @@
+using System.Data;
 using emprestimos_livros.data;
 using emprestimos_livros.Models;
 using Microsoft.EntityFrameworkCore;
@@ -81,6 +82,30 @@ namespace emprestimos_livros.Services.EmprestimosService
                 return response;
 
             }
+        }
+
+
+        public async Task<DataTable> BuscarDadosEmprestimosExcel()
+        {
+            DataTable dataTable = new DataTable();
+
+            dataTable.TableName = "Dados do emprestimos";
+
+            dataTable.Columns.Add("Recebedor", typeof(string));
+            dataTable.Columns.Add("Fornecedor", typeof(string));
+            dataTable.Columns.Add("Livro", typeof(string));
+            dataTable.Columns.Add("Data Emprestimos", typeof(DateTime));
+
+            var emprestimos = await BuscarEmprestimos();
+
+            if (emprestimos.Dados.Count > 0)
+            {
+                emprestimos.Dados.ForEach(emprestimo =>
+            {
+                dataTable.Rows.Add(emprestimo.Recebedor, emprestimo.Fornecedor, emprestimo.LivroEmprestado, emprestimo.dataUltimaAtualizacao);
+            });
+            }
+            return dataTable;
         }
     }
 }

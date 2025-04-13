@@ -1,4 +1,5 @@
 
+using System.Data;
 using emprestimos_livros.Models;
 
 namespace emprestimos_livros.Services.EmprestimosService
@@ -7,6 +8,7 @@ namespace emprestimos_livros.Services.EmprestimosService
     {
         Task<ResponseModel<List<EmprestimosModel>>> BuscarEmprestimos();
         Task<ResponseModel<EmprestimosModel>> BuscarEmprestimoPorId(int? id);
+        Task<DataTable> BuscarDadosEmprestimosExcel();
 
     }
 }

@@ -86,9 +86,9 @@ namespace emprestimos_livros.Controllers
 
         }
 
-        public IActionResult Exportar()
+        public async Task<IActionResult> Exportar()
         {
-            var dados = GetDados();
+            var dados = await _emprestimosInterface.BuscarDadosEmprestimosExcel();
 
             using (XLWorkbook workBook = new XLWorkbook())
             {
@@ -106,29 +106,7 @@ namespace emprestimos_livros.Controllers
 
         }
 
-        private DataTable GetDados()
-        {
-            DataTable dataTable = new DataTable();
 
-            dataTable.TableName = "Dados do emprestimos";
-
-            dataTable.Columns.Add("Recebedor", typeof(string));
-            dataTable.Columns.Add("Fornecedor", typeof(string));
-            dataTable.Columns.Add("Livro", typeof(string));
-            dataTable.Columns.Add("Data Emprestimos", typeof(DateTime));
-
-            var dados = _db.Emprestimos.ToList();
-
-            if (dados.Count > 0)
-            {
-                dados.ForEach(emprestimo =>
-                {
-                    dataTable.Rows.Add(emprestimo.Recebedor, emprestimo.Fornecedor, emprestimo.LivroEmprestado, emprestimo.dataUltimaAtualizacao);
-                });
-            }
-
-            return dataTable;
-        }
 
         [HttpPost]
         public IActionResult Cadastrar(EmprestimosModel emprestimos)
