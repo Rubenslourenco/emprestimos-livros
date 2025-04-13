@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using ClosedXML.Excel;
 using emprestimos_livros.data;
 using emprestimos_livros.Models;
+using emprestimos_livros.Services.EmprestimosService;
 using emprestimos_livros.Services.SessaoService;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -19,13 +20,15 @@ namespace emprestimos_livros.Controllers
 
         readonly private ApplicationDbContext _db;
         readonly private ISessaoInterface _sessaoInterface;
+        private readonly IEmprestimosInterface _emprestimosInterface;
 
-        public EmprestimoController(ApplicationDbContext db, ISessaoInterface sessaoInterface)
+        public EmprestimoController(ApplicationDbContext db, IEmprestimosInterface emprestimosInterface, ISessaoInterface sessaoInterface)
         {
             _db = db;
             _sessaoInterface = sessaoInterface;
+            _emprestimosInterface = emprestimosInterface;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var usuario = _sessaoInterface.BuscarSessao();
 
@@ -34,8 +37,9 @@ namespace emprestimos_livros.Controllers
                 return RedirectToAction("Login", "Login");
             }
 
-            IEnumerable<EmprestimosModel> emprestimos = _db.Emprestimos;
-            return View(emprestimos);
+            // IEnumerable<EmprestimosModel> emprestimos = _db.Emprestimos;
+            var emprestimos = await _emprestimosInterface.BuscarEmprestimos();
+            return View(emprestimos.Dados);
         }
 
         [HttpGet]
@@ -51,7 +55,7 @@ namespace emprestimos_livros.Controllers
         }
 
         [HttpGet]
-        public IActionResult Editar(int? id)
+        public async Task<IActionResult> Editar(int? id)
         {
 
             var usuario = _sessaoInterface.BuscarSessao();
@@ -61,24 +65,13 @@ namespace emprestimos_livros.Controllers
                 return RedirectToAction("Login", "Login");
             }
 
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
+            var emprestimo = await _emprestimosInterface.BuscarEmprestimoPorId(id);
 
-            EmprestimosModel emprestimo = _db.Emprestimos.FirstOrDefault(x => x.Id == id);
-
-
-            if (emprestimo == null)
-            {
-                return NotFound();
-            }
-
-            return View(emprestimo);
+            return View(emprestimo.Dados);
         }
 
         [HttpGet]
-        public IActionResult Excluir(int? id)
+        public async Task<IActionResult> Excluir(int? id)
         {
             var usuario = _sessaoInterface.BuscarSessao();
 
@@ -87,18 +80,7 @@ namespace emprestimos_livros.Controllers
                 return RedirectToAction("Login", "Login");
             }
 
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-
-            EmprestimosModel emprestimo = _db.Emprestimos.FirstOrDefault(x => x.Id == id);
-
-
-            if (emprestimo == null)
-            {
-                return NotFound();
-            }
+            var emprestimo = await _emprestimosInterface.BuscarEmprestimoPorId(id);
 
             return View(emprestimo);
 

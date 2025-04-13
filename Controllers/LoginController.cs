@@ -22,6 +22,13 @@ public class LoginController : Controller
 
     public IActionResult Login()
     {
+        var usuario = _sessaoInterface.BuscarSessao();
+
+        if (usuario != null)
+        {
+            return RedirectToAction("Login", "Login");
+        }
+
         return View();
     }
     public IActionResult Logout()
