@@ -109,16 +109,23 @@ namespace emprestimos_livros.Controllers
 
 
         [HttpPost]
-        public IActionResult Cadastrar(EmprestimosModel emprestimos)
+        public async Task<IActionResult> Cadastrar(EmprestimosModel emprestimos)
         {
             if (ModelState.IsValid)
             {
-                emprestimos.dataUltimaAtualizacao = DateTime.Now;
 
-                _db.Emprestimos.Add(emprestimos);
-                _db.SaveChanges();
+                var emprestimoResult = await _emprestimosInterface.CadastrarEmprestimo(emprestimos);
 
-                TempData["MensagemSucesso"] = "Cadastro realizado com sucesso!";
+                if (emprestimoResult.Status)
+                {
+                    TempData["MensagemSucesso"] = emprestimoResult.Mensagem;
+
+                }
+                else
+                {
+                    TempData["MensagemErro"] = emprestimoResult.Mensagem;
+                    return View(emprestimoResult);
+                }
 
                 return RedirectToAction("Index");
             }

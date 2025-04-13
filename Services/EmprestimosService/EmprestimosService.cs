@@ -1,4 +1,5 @@
 using System.Data;
+using Azure;
 using emprestimos_livros.data;
 using emprestimos_livros.Models;
 using Microsoft.EntityFrameworkCore;
@@ -106,6 +107,27 @@ namespace emprestimos_livros.Services.EmprestimosService
             });
             }
             return dataTable;
+        }
+
+        public async Task<ResponseModel<EmprestimosModel>> CadastrarEmprestimo(EmprestimosModel emprestimosModel)
+        {
+            ResponseModel<EmprestimosModel> response = new ResponseModel<EmprestimosModel>();
+
+            try
+            {
+                _context.Add(emprestimosModel);
+                await _context.SaveChangesAsync();
+
+                response.Mensagem = "Cadastro realizado com secesso";
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Mensagem = ex.Message;
+                response.Status = false;
+                return response;
+            }
         }
     }
 }
