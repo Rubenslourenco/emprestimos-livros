@@ -129,5 +129,39 @@ namespace emprestimos_livros.Services.EmprestimosService
                 return response;
             }
         }
+
+        public async Task<ResponseModel<EmprestimosModel>> EditarEmprestimo(EmprestimosModel emprestimosModel)
+        {
+            ResponseModel<EmprestimosModel> response = new ResponseModel<EmprestimosModel>();
+
+            try
+            {
+                var emprestimo = await BuscarEmprestimoPorId(emprestimosModel.Id);
+
+                if (emprestimo.Status == false)
+                {
+                    return emprestimo;
+                }
+
+                emprestimo.Dados.LivroEmprestado = emprestimosModel.LivroEmprestado;
+                emprestimo.Dados.Fornecedor = emprestimosModel.Fornecedor;
+                emprestimo.Dados.Recebedor = emprestimosModel.Recebedor;
+
+                _context.Add(emprestimo);
+                await _context.SaveChangesAsync();
+
+                response.Mensagem = "Edição realizada com sucesso";
+
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+
+                response.Mensagem = ex.Message;
+                response.Status = false;
+                return response;
+            }
+        }
     }
 }

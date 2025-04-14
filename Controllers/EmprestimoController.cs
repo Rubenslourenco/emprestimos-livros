@@ -134,49 +134,52 @@ namespace emprestimos_livros.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Editar(EmprestimosModel emprestimo)
+        public async Task<IActionResult> Editar(EmprestimosModel emprestimo)
         {
 
             if (ModelState.IsValid)
             {
+                var emprestimoResult = await _emprestimosInterface.EditarEmprestimo(emprestimo);
 
-                var emprestimoDB = _db.Emprestimos.Find(emprestimo.Id);
+                if (!emprestimoResult.Status)
+                {
+                    if (emprestimoResult.Status)
+                    {
+                        TempData["MensagemSucesso"] = emprestimoResult.Mensagem;
+                    }
+                    else
+                    {
+                        TempData["MensagemErro"] = emprestimoResult.Mensagem;
+                    }
 
-                emprestimoDB.Fornecedor = emprestimo.Fornecedor;
-                emprestimoDB.Recebedor = emprestimo.Recebedor;
-                emprestimoDB.LivroEmprestado = emprestimo.LivroEmprestado;
 
-                _db.Emprestimos.Update(emprestimoDB);
+
+                    return RedirectToAction("Index");
+                }
+
+                TempData["MensagemErro"] = "Algum erro ocorreu al realizar a ediçao!";
+
+                return View(emprestimo);
+            }
+
+            [HttpPost]
+            public IActionResult Excluir(EmprestimosModel emprestimo)
+            {
+
+                if (emprestimo == null)
+                {
+                    return NotFound();
+                }
+
+                _db.Emprestimos.Remove(emprestimo);
                 _db.SaveChanges();
 
-                TempData["MensagemSucesso"] = "Ediçao realizado com sucesso: ";
+                TempData["MensagemSucesso"] = "Remoção realizada com sucesso: ";
 
                 return RedirectToAction("Index");
+
+
             }
 
-            TempData["MensagemErro"] = "Algum erro ocorreu al realizar a ediçao!";
-
-            return View(emprestimo);
         }
-
-        [HttpPost]
-        public IActionResult Excluir(EmprestimosModel emprestimo)
-        {
-
-            if (emprestimo == null)
-            {
-                return NotFound();
-            }
-
-            _db.Emprestimos.Remove(emprestimo);
-            _db.SaveChanges();
-
-            TempData["MensagemSucesso"] = "Remoção realizada com sucesso: ";
-
-            return RedirectToAction("Index");
-
-
-        }
-
     }
-}
