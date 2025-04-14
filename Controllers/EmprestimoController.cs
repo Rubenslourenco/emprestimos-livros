@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Wordprocessing;
 using emprestimos_livros.data;
 using emprestimos_livros.Models;
 using emprestimos_livros.Services.EmprestimosService;
@@ -154,32 +155,40 @@ namespace emprestimos_livros.Controllers
 
 
 
-                    return RedirectToAction("Index");
                 }
-
-                TempData["MensagemErro"] = "Algum erro ocorreu al realizar a ediçao!";
-
-                return View(emprestimo);
-            }
-
-            [HttpPost]
-            public IActionResult Excluir(EmprestimosModel emprestimo)
-            {
-
-                if (emprestimo == null)
-                {
-                    return NotFound();
-                }
-
-                _db.Emprestimos.Remove(emprestimo);
-                _db.SaveChanges();
-
-                TempData["MensagemSucesso"] = "Remoção realizada com sucesso: ";
-
                 return RedirectToAction("Index");
 
+            }
+            TempData["MensagemErro"] = "Algum erro ocorreu al realizar a ediçao!";
 
+            return View(emprestimo);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Excluir(EmprestimosModel emprestimo)
+        {
+
+            if (emprestimo == null)
+            {
+                TempData["MensagemErro"] = "Emprestimo não localizado";
+                return RedirectToAction("Index");
             }
 
+            var emprestimoResult = await _emprestimosInterface.RemoveEmprestimo(emprestimo);
+
+            if (emprestimoResult.Status)
+            {
+                TempData["MensagemSucesso"] = emprestimoResult.Mensagem;
+
+            }
+            else
+            {
+                TempData["MensagemErro"] = emprestimoResult.Mensagem;
+            }
+            return RedirectToAction("Index");
+
+
         }
+
     }
+}

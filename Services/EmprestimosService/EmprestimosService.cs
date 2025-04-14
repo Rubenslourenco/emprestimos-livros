@@ -163,5 +163,25 @@ namespace emprestimos_livros.Services.EmprestimosService
                 return response;
             }
         }
+
+        public async Task<ResponseModel<EmprestimosModel>> RemoveEmprestimo(EmprestimosModel emprestimosModel)
+        {
+            ResponseModel<EmprestimosModel> response = new ResponseModel<EmprestimosModel>();
+
+            try
+            {
+                _context.Remove(emprestimosModel);
+                await _context.SaveChangesAsync();
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+
+                response.Mensagem = ex.Message;
+                response.Status = false;
+                return response;
+            }
+        }
     }
 }
