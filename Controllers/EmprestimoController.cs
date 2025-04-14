@@ -19,13 +19,13 @@ namespace emprestimos_livros.Controllers
     public class EmprestimoController : Controller
     {
 
-        readonly private ApplicationDbContext _db;
+
         readonly private ISessaoInterface _sessaoInterface;
         private readonly IEmprestimosInterface _emprestimosInterface;
 
         public EmprestimoController(ApplicationDbContext db, IEmprestimosInterface emprestimosInterface, ISessaoInterface sessaoInterface)
         {
-            _db = db;
+
             _sessaoInterface = sessaoInterface;
             _emprestimosInterface = emprestimosInterface;
         }
