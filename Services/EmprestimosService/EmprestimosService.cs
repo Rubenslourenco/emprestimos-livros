@@ -147,7 +147,7 @@ namespace emprestimos_livros.Services.EmprestimosService
                 emprestimo.Dados.Fornecedor = emprestimosModel.Fornecedor;
                 emprestimo.Dados.Recebedor = emprestimosModel.Recebedor;
 
-                _context.Add(emprestimo);
+                _context.Update(emprestimo.Dados);
                 await _context.SaveChangesAsync();
 
                 response.Mensagem = "Edição realizada com sucesso";
@@ -173,6 +173,7 @@ namespace emprestimos_livros.Services.EmprestimosService
                 _context.Remove(emprestimosModel);
                 await _context.SaveChangesAsync();
 
+                response.Mensagem = "Exclusão realizada com sucesso";
                 return response;
             }
             catch (Exception ex)

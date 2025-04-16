@@ -83,7 +83,7 @@ namespace emprestimos_livros.Controllers
 
             var emprestimo = await _emprestimosInterface.BuscarEmprestimoPorId(id);
 
-            return View(emprestimo);
+            return View(emprestimo.Dados);
 
         }
 
@@ -110,12 +110,12 @@ namespace emprestimos_livros.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Cadastrar(EmprestimosModel emprestimos)
+        public async Task<IActionResult> Cadastrar(EmprestimosModel emprestimo)
         {
             if (ModelState.IsValid)
             {
 
-                var emprestimoResult = await _emprestimosInterface.CadastrarEmprestimo(emprestimos);
+                var emprestimoResult = await _emprestimosInterface.CadastrarEmprestimo(emprestimo);
 
                 if (emprestimoResult.Status)
                 {
@@ -125,7 +125,7 @@ namespace emprestimos_livros.Controllers
                 else
                 {
                     TempData["MensagemErro"] = emprestimoResult.Mensagem;
-                    return View(emprestimoResult);
+                    return View(emprestimo);
                 }
 
                 return RedirectToAction("Index");
@@ -151,6 +151,7 @@ namespace emprestimos_livros.Controllers
                     else
                     {
                         TempData["MensagemErro"] = emprestimoResult.Mensagem;
+                        return View(emprestimo);
                     }
 
 
@@ -171,7 +172,7 @@ namespace emprestimos_livros.Controllers
             if (emprestimo == null)
             {
                 TempData["MensagemErro"] = "Emprestimo não localizado";
-                return RedirectToAction("Index");
+                return View(emprestimo);
             }
 
             var emprestimoResult = await _emprestimosInterface.RemoveEmprestimo(emprestimo);
@@ -180,10 +181,12 @@ namespace emprestimos_livros.Controllers
             {
                 TempData["MensagemSucesso"] = emprestimoResult.Mensagem;
 
+
             }
             else
             {
                 TempData["MensagemErro"] = emprestimoResult.Mensagem;
+                return View(emprestimoResult.Dados ?? emprestimo);
             }
             return RedirectToAction("Index");
 
